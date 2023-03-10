@@ -1,0 +1,5 @@
+# Ignore all temp files
+~*
+
+# Ignore `auto-save-list`
+auto-save-list/*
