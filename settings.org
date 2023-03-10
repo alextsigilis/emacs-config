@@ -1,4 +1,6 @@
 #+title: My emacs configuration
+#+options: toc:2
+
 
 * Basing Settings
 
