@@ -23,4 +23,10 @@
 (add-hook 'org-mode-hook 'org-indent-mode)
 #+end_src
 
-
+*** Org Babel
+Add support for executing languages inside org-mode files
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+#+end_src
