@@ -3,3 +3,9 @@
 
 # Ignore `auto-save-list`
 auto-save-list/*
+
+settings.el
+setting.org~
+
+elpa/*
+
