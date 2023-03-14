@@ -1,5 +1,30 @@
 #+title: My emacs configuration
-#+options: toc:2
+
+* Packages
+
+First off all we must use `package`
+#+begin_src emacs-lisp
+(require 'package)
+#+end_src
+
+** Add NonGNUE ELPA
+#+begin_src emacs-lisp
+(add-to-list 'package-archives
+    '("nongnu" . "https://elpa.nongnu.org/nongnu/")
+)
+#+end_src
+
+** Add MELPA
+#+begin_src emacs-lisp
+(add-to-list 'package-archives
+   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+)
+#+end_src
+
+** Initialize `package`
+#+begin_src emacs-lisp
+(package-initialize)
+#+end_src
 
 
 * Basing Settings
@@ -15,6 +40,14 @@
 #+end_src
 
 
+* Themes
+** Leuven-theme
+[[https://github.com/fniessen/emacs-leuven-theme][Github repo]]
+#+begin_src emacs-lisp
+(load-theme 'leuven-dark t)
+#+end_src
+
+
 * Org Mode settings
 
 ** Basic settings
@@ -26,9 +59,43 @@
 #+end_src
 
 *** Org Babel
-Add support for executing languages inside org-mode files
+Add support for executing languages inside org-mode files.
+Currently Supported Languages:
+- [X] Python
+- [ ] scheme
+
 #+begin_src emacs-lisp
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((python . t)))
+ '(
+    (python . t)
+    (scheme . t)
+  ))
 #+end_src
+
+
+* Programming Languages
+Support for varius programming languages
+
+** Python
+*** Ipython
+Using IPython as the Python shell.
+#+begin_src emacs-lisp
+(setq python-shell-interpreter "ipython"
+    python-shell-interpreter-args "-i --simple-prompt --InteractiveShell.display_page=True")
+#+end_src
+
+*** Auto-completion - Jedi.el
+[[http://tkf.github.io/emacs-jedi/latest/][url]]
+***** Installation
+`M[-x package-install RET jedi RET`
+***** Configuration
+#+begin_src emacs-lisp
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)                 ; optional
+#+end_src
+***** Python Server installation
+`M-x jedi:install-server`
+
+
+** Scheme
